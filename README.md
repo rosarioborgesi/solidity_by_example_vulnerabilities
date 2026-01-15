@@ -11,27 +11,10 @@ This repository contains code examples from [Solidity by Example](https://solidi
 - [Foundry](https://book.getfoundry.sh/getting-started/installation) installed
 - Basic knowledge of Solidity and smart contracts
 
-## 🚀 Getting Started
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd foundry_sscd_prep
-
-# Install dependencies
-forge install
-
-# Run tests
-forge test
-
-# Start local blockchain (Anvil)
-anvil
-```
-
 ## 📚 Examples
 
 ### 🔓 Accessing Private Data Hack
-**Location:** `src/accessingPrivateDataHack/`
+**Location:** `src/accessingPrivateData/`
 
 Demonstrates that "private" variables in Solidity are not truly private. All blockchain data is publicly readable through direct storage access.
 
@@ -56,6 +39,15 @@ Demonstrates how mismatched storage layouts between contracts can be exploited t
 - **Contracts:** `Lib.sol`, `HackMe.sol`, `Attack.sol`
 - **Guide:** [README](src/delegateCall/README.md)
 - **Key Learning:** Understanding delegatecall context, storage layout matching, and the dangers of delegatecalling to mutable addresses
+
+### 🎣 Phishing with tx.origin
+**Location:** `src/phishingWithTxOrigin/`
+
+Demonstrates how using `tx.origin` for authentication creates a phishing vulnerability where attackers can trick users into calling malicious contracts that drain their wallets.
+
+- **Contracts:** `Wallet.sol`, `Attack.sol`
+- **Guide:** [README](src/phishingWithTxOrigin/README.md)
+- **Key Learning:** The critical difference between `tx.origin` and `msg.sender`, and why `tx.origin` should never be used for authentication
 
 ## 🔗 Resources
 
