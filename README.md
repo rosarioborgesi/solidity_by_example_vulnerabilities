@@ -77,6 +77,15 @@ Demonstrates how `selfdestruct` can be weaponized to force-send ETH to any contr
 - **Guide:** [README](src/selfDestruct/README.md)
 - **Key Learning:** Never rely on `address(this).balance` for critical logic; use internal accounting variables instead to prevent manipulation via forced ETH transfers
 
+### 🎭 Hiding Malicious Code
+**Location:** `src/hideMaliciousCode/`
+
+Demonstrates how attackers can hide malicious code by exploiting Solidity's unchecked type casting. Any address can be cast to any contract type, allowing malicious contracts to masquerade as legitimate ones.
+
+- **Contracts:** `Foo.sol`, `Bar.sol`, `Mal.sol`
+- **Guide:** [README](src/hideMaliciousCode/README.md)
+- **Key Learning:** Solidity doesn't verify type casts at runtime; prefer creating contracts with `new` instead of accepting external addresses, and always make external contract addresses public for verification
+
 ## 🔗 Resources
 
 - [Solidity by Example](https://solidity-by-example.org) - Original tutorial source
