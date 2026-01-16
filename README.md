@@ -86,6 +86,15 @@ Demonstrates how attackers can hide malicious code by exploiting Solidity's unch
 - **Guide:** [README](src/hideMaliciousCode/README.md)
 - **Key Learning:** Solidity doesn't verify type casts at runtime; prefer creating contracts with `new` instead of accepting external addresses, and always make external contract addresses public for verification
 
+### 🍯 Honeypot Trap
+**Location:** `src/honeyPot/`
+
+Demonstrates a honeypot - a deliberately vulnerable-looking contract that's actually a trap for attackers. The contract appears to have a reentrancy vulnerability, baiting hackers to exploit it, but secretly prevents the attack from succeeding and captures their funds.
+
+- **Contracts:** `Bank.sol`, `HoneyPot.sol`, `Attack.sol`
+- **Guide:** [README](src/honeyPot/README.md)
+- **Key Learning:** Understanding how type casting is unchecked, deployment parameters are hidden, and inner revert reasons are masked; demonstrating why thorough verification of external contracts is crucial before interaction
+
 ## 🔗 Resources
 
 - [Solidity by Example](https://solidity-by-example.org) - Original tutorial source
