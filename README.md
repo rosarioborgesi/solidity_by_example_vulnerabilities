@@ -131,6 +131,15 @@ Demonstrates a sophisticated attack combining CREATE2 and selfdestruct to deploy
 - **Guide:** [README](src/deployDifferentContractsAtTheSameAddress/README.md)
 - **Key Learning:** Understanding CREATE2 deterministic deployment, how selfdestruct enables address reuse, the dangers of approving addresses instead of code hashes, and why delegatecall to untrusted addresses is extremely dangerous
 
+### 💰 Vault Inflation Attack
+**Location:** `src/vaultInflationAttack/`
+
+Demonstrates how vault share prices can be manipulated through direct token transfers (donations) to inflate the share value, causing subsequent depositors to receive zero shares due to integer division rounding. This allows an attacker to steal all deposited funds while victims lose their entire deposits.
+
+- **Contracts:** `Vault.sol` (vulnerable ERC-4626-style vault)
+- **Guide:** [README](src/vaultInflationAttack/README.md)
+- **Key Learning:** Understanding ERC-4626 vault mechanics, share price calculation vulnerabilities, integer division rounding exploitation, front-running risks with first deposits, and critical prevention techniques including minimum shares, dead shares, internal balance tracking, and decimal offsets
+
 ## 🔗 Resources
 
 - [Solidity by Example](https://solidity-by-example.org) - Original tutorial source

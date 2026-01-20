@@ -39,7 +39,7 @@ contract HackMe {
     }
 
     function doSomething(uint256 _num) public {
-        (bool success, ) = lib.delegatecall(abi.encodeWithSignature("doSomething(uint256)", _num));
+        (bool success,) = lib.delegatecall(abi.encodeWithSignature("doSomething(uint256)", _num));
         require(success, "Delegate call failed");
     }
 }
