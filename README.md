@@ -140,6 +140,15 @@ Demonstrates how vault share prices can be manipulated through direct token tran
 - **Guide:** [README](src/vaultInflationAttack/README.md)
 - **Key Learning:** Understanding ERC-4626 vault mechanics, share price calculation vulnerabilities, integer division rounding exploitation, front-running risks with first deposits, and critical prevention techniques including minimum shares, dead shares, internal balance tracking, and decimal offsets
 
+### 🔐 WETH Permit Vulnerability
+**Location:** `src/wethPermit/`
+
+Demonstrates a critical vulnerability when contracts assume all ERC20 tokens implement EIP-2612 permit. WETH doesn't have a permit function, so calling permit() triggers WETH's fallback function which calls deposit() and doesn't revert. This allows attackers to bypass permit validation and exploit existing token approvals to steal funds by crediting tokens to arbitrary recipients.
+
+- **Contracts:** `ERC20Bank.sol` (vulnerable), `WETH.sol` (token without permit), `ERC20.sol`, `IERC20Permit.sol`
+- **Guide:** [README](src/wethPermit/README.md)
+- **Key Learning:** Understanding that EIP-2612 permit is optional, how fallback functions can mask failures, the importance of validating permit succeeded, the dangers of separate owner/recipient parameters, and why you should never assume all tokens implement optional standards
+
 ## 🔗 Resources
 
 - [Solidity by Example](https://solidity-by-example.org) - Original tutorial source
