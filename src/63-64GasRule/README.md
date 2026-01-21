@@ -180,54 +180,6 @@ The term `gasNow / 63` approximates the missing `(1/64)*g*` portion.
 
 ---
 
-## 🛡️ Prevention
-
-### Option 1: Correct Gas Accounting
-
-Use the corrected formula that accounts for the withheld gas:
-
-```solidity
-uint256 gasUsed = gasStart - (gasNow / 63) - gasNow;
-```
-
----
-
-### Option 2: Measure Gas Within Same Call Frame
-
-Avoid measuring gas across external calls. Measure within the same contract:
-
-```solidity
-function operation() external {
-    uint256 gasStart = gasleft();
-    // ... do work ...
-    uint256 gasUsed = gasStart - gasleft();
-    // refund based on gasUsed
-}
-```
-
----
-
-### Option 3: Fixed Fee Model
-
-Instead of dynamic gas-based refunds, use fixed fees or a verified accounting model:
-
-```solidity
-function operation() external payable {
-    require(msg.value >= FIXED_FEE, "Insufficient fee");
-    // ... do work ...
-    // refund excess
-    payable(msg.sender).transfer(msg.value - FIXED_FEE);
-}
-```
-
----
-
-### Option 4: Avoid Gas-Based Refunds Entirely
-
-The safest approach: don't tie refunds to gas consumption at all. Use alternative payment models that don't rely on gas measurements.
-
----
-
 ## 📚 Summary
 
 **The Vulnerability:** Contracts that measure gas consumption across external calls will miscalculate due to the EIP-150 63/64 gas forwarding rule. The EVM withholds 1/64 of gas in the caller, but naive gas accounting treats this withheld gas as "consumed", leading to overpayment.
